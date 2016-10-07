@@ -5,7 +5,6 @@ LABEL Description="Docker image for building arm-embedded projects"
 # General dependencies
 RUN apt-get update && apt-get install -y \
   git \
-  subversion \
   cmake \
   make \
   automake \
