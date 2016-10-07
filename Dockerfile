@@ -18,7 +18,8 @@ RUN apt-get update && apt-get install -y \
   unzip \
   python-setuptools \
   python-dev \
-  curl
+  curl \
+  srecord
 
 # arm-none-eabi custom ppa
 RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
