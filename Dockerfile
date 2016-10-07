@@ -6,8 +6,8 @@ LABEL Description="Docker image for building arm-embedded projects"
 ENV PROTOBUF_VERSION="3.0.0"
 ENV PROTOBUF_ZIP=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
 ENV PROTOBUF_URL=https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOBUF_ZIP}
-RUN wget ${PROTOBUF_URL} \
-    && unzip ${PROTOBUF_ZIP} 'bin/*' -d /usr
+ADD ${PROTOBUF_URL} ${PROTOBUF_ZIP}
+RUN unzip ${PROTOBUF_ZIP} 'bin/*' -d /usr
     
 # General dependencies
 RUN apt-get update && apt-get install -y \
