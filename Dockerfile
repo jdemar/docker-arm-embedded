@@ -8,26 +8,37 @@ RUN apt-get update && apt-get install -y \
   cmake \
   make \
   automake \
+  autoconf \
+  libtool \
+  g++ \
   ninja-build \
   python-dev \
   software-properties-common \
   ccache \
   unzip \
   python-setuptools \
-  python-dev
-  
-# protobuf
-ENV PROTOBUF_VERSION="3.1.0"
-ENV PROTOBUF_ZIP=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
-ENV PROTOBUF_URL=https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOBUF_ZIP}
-ADD ${PROTOBUF_URL} ${PROTOBUF_ZIP}
-RUN unzip ${PROTOBUF_ZIP} -d /usr
-RUN easy_install protobuf
+  python-dev \
+  curl
 
 # arm-none-eabi custom ppa
 RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
   apt-get update && \
   apt-get install -y gcc-arm-embedded
+  
+# protobuf
+ENV PROTOBUF_VERSION="3.1.0"
+ENV PROTOBUF_CPP=protobuf-cpp-${PROTOBUF_VERSION}.tar.gz
+ENV PROTOBUF_URL=https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOBUF_CPP}
+ADD ${PROTOBUF_URL} ${PROTOBUF_CPP}
+RUN tar -zxf ${PROTOBUF_CPP} -C /tmp && \
+    cd /tmp/protobuf-${PROTOBUF_VERSION} && \
+    ./configure && \
+    make && \
+    make install && \
+    ldconfig && \
+    easy_install protobuf && \
+    cd - && \
+    rm -rf ${PROTOBUF_CPP} /tmp/protobuf-${PROTOBUF_VERSION}
   
 # Cleanup
 RUN apt-get clean && \
