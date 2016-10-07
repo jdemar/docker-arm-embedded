@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:devel
 MAINTAINER Justin DeMartino <jdemarti@gmail.com>
 LABEL Description="Docker image for building arm-embedded projects"
 
