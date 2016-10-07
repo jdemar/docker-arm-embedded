@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
   ninja-build \
   python-dev \
   software-properties-common \
+  protobuf \
   ccache
 
 # arm-none-eabi custom ppa
