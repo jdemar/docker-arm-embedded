@@ -12,14 +12,17 @@ RUN apt-get update && apt-get install -y \
   python-dev \
   software-properties-common \
   ccache \
-  unzip
+  unzip \
+  python-setuptools \
+  python-dev
   
 # protobuf
-ENV PROTOBUF_VERSION="3.0.0"
+ENV PROTOBUF_VERSION="3.1.0"
 ENV PROTOBUF_ZIP=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
 ENV PROTOBUF_URL=https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOBUF_ZIP}
 ADD ${PROTOBUF_URL} ${PROTOBUF_ZIP}
-RUN unzip ${PROTOBUF_ZIP} 'bin/*' -d /usr
+RUN unzip ${PROTOBUF_ZIP} -d /usr
+RUN easy_install protobuf
 
 # arm-none-eabi custom ppa
 RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
