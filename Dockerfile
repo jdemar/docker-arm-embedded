@@ -2,6 +2,13 @@ FROM ubuntu:latest
 MAINTAINER Justin DeMartino <jdemarti@gmail.com>
 LABEL Description="Docker image for building arm-embedded projects"
 
+#protobuf
+ENV PROTOBUF_VERSION="3.0.0"
+ENV PROTOBUF_ZIP=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
+ENV PROTOBUF_URL=https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOBUF_ZIP}
+RUN wget ${PROTOBUF_URL} \
+    && unzip ${PROTOBUF_ZIP} 'bin/*' -d /usr
+    
 # General dependencies
 RUN apt-get update && apt-get install -y \
   git \
@@ -17,12 +24,6 @@ RUN apt-get update && apt-get install -y \
 RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
   apt-get update && \
   apt-get install -y gcc-arm-embedded
-  
-#protobuf
-ADD https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-linux-x86_64.zip protoc-3.1.0-linux-x86_64.zip
-RUN unzip protoc-3.1.0-linux-x86_64.zip
-RUN mv protoc-3.1.0-linux-x86_64/bin/protoc /usr/local/bin/
-RUN rm -rf protoc-3.1.0-linux-x86_64.zip protoc-3.1.0-linux-x86_64
   
 # Cleanup
 RUN apt-get clean && \
