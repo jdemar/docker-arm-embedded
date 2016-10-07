@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
   ninja-build \
   python-dev \
   software-properties-common \
-  protobuf \
+  protobuf-compiler \
   ccache
   
   
