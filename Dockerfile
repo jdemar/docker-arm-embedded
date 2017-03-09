@@ -21,6 +21,9 @@ RUN apt-get update && apt-get install -y \
   curl \
   srecord
 
+# Easy Install
+RUN easy_install gitchangelog
+
 # arm-none-eabi custom ppa
 RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
   apt-get update && \
