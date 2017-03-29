@@ -48,4 +48,4 @@ RUN tar -zxf ${PROTOBUF_CPP} -C /tmp && \
 RUN apt-get clean && \
   rm -rf /var/lib/apt
 
-localedef -i en_US -f UTF-8 en_US.UTF-8
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8
