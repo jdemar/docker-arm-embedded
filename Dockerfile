@@ -19,10 +19,11 @@ RUN apt-get update && apt-get install -y \
   python-setuptools \
   python-dev \
   curl \
-  srecord
+  srecord \
+  git-lfs
 
 # Easy Install
-RUN easy_install gitchangelog
+RUN easy_install gitchangelog nrfutil
 
 # arm-none-eabi custom ppa
 RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
