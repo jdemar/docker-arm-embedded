@@ -34,7 +34,8 @@ RUN apt-get update && apt-get install -y \
 RUN git lfs install
 
 # Easy Install
-RUN easy_install gitchangelog nrfutil
+RUN easy_install gitchangelog pip
+RUN pip install nrfutil
   
 # protobuf
 ENV PROTOBUF_VERSION="3.1.0"
