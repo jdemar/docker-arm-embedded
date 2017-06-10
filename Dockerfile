@@ -4,7 +4,7 @@ LABEL Description="Docker image for building arm-embedded projects"
 
 RUN apt-get update && apt-get install -y software-properties-common
 RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
-    add-apt-repository 
+    add-apt-repository ppa:git-core/ppa
 
     
 # General dependencies
