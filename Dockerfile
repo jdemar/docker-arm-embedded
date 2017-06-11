@@ -24,7 +24,8 @@ RUN apt-get update && apt-get install -y \
   python-dev \
   curl \
   srecord \
-  gcc-arm-embedded
+  gcc-arm-embedded \
+  locales
   
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 
@@ -56,4 +57,5 @@ RUN tar -zxf ${PROTOBUF_CPP} -C /tmp && \
 RUN apt-get clean && \
   rm -rf /var/lib/apt
 
+RUN locale-gen en_US.UTF-8
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
