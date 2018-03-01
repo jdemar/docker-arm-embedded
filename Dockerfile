@@ -37,6 +37,7 @@ RUN git lfs install
 # Easy Install
 RUN easy_install gitchangelog pip
 RUN pip install nrfutil
+RUN pip install jumper
   
 # protobuf
 ENV PROTOBUF_VERSION="3.1.0"
